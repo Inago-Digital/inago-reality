@@ -57,7 +57,7 @@ export function Footer() {
         >
           <img
             src="assets/icons/instagram-light.svg"
-            className="w-7 h-7 h-auto"
+            className="w-7 h-7"
             alt="Instagram Inago Digital"
           />
         </a>
@@ -68,7 +68,7 @@ export function Footer() {
         >
           <img
             src="assets/icons/facebook-light.svg"
-            className="w-7 h-7 h-auto"
+            className="w-7 h-7"
             alt="Facebook Inago Digital"
           />
         </a>
@@ -79,7 +79,7 @@ export function Footer() {
         >
           <img
             src="assets/icons/linkedin-light.svg"
-            className="w-7 h-7 h-auto"
+            className="w-7 h-7"
             alt="Instagram Inago Digital"
           />
         </a>
