@@ -7,6 +7,7 @@ import { StepCard } from "./StepCard.11ty"
 import { Plan } from "./Plan.type"
 import { PlanCard } from "./PlanCard.11ty"
 import { Footer } from "./Footer.11ty"
+import { useState } from "react"
 
 const results: Result[] = [
   {
@@ -98,9 +99,15 @@ const plans: Plan[] = [
 ]
 
 export function App() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
-    <div className="m-6 space-y-10">
-      <header className="bg-primary flex flex-col py-8 min-h-[calc(100vh-48px)] px-12 rounded-3xl text-foreground">
+    <div className="m-4 lg:m-6 space-y-10">
+      <header className="bg-primary flex flex-col p-6 md:py-8 min-h-[calc(100vh-48px)] md:px-12 rounded-3xl text-foreground">
         <nav className="flex justify-between items-center flex-grow-0">
           <a href="/" className="sr-only">
             Inago Home
@@ -114,7 +121,7 @@ export function App() {
             />
           </a>
 
-          <ul className="flex items-center space-x-8 text-white font-bold text-xl">
+          <ul className="hidden md:flex items-center space-x-8 text-white font-bold text-xl">
             <li>
               <a href="/" className="hover:light transition-colors">
                 Home
@@ -131,11 +138,41 @@ export function App() {
               </Button>
             </li>
           </ul>
+
+          <button
+            className="md:hidden w-10 h-10 flex flex-col justify-center items-end gap-1 cursor-pointer ml-5 md:ml-0"
+            onClick={toggleMenu}
+          >
+            <motion.span
+              className="bg-dark w-full h-1"
+              animate={{
+                rotate: isOpen ? 45 : 0,
+                y: isOpen ? 8 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            />
+            <motion.span
+              className="bg-dark w-full h-1"
+              animate={{
+                opacity: isOpen ? 0 : 1,
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            />
+            <motion.span
+              className="bg-dark w-1/2 h-1"
+              animate={{
+                rotate: isOpen ? -45 : 0,
+                y: isOpen ? -8 : 0,
+                width: isOpen ? "100%" : "50%",
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            />
+          </button>
         </nav>
 
-        <div className="flex relative flex-grow items-center mx-6">
-          <div className="w-1/2">
-            <h1 className="text-8xl font-bold mb-6">
+        <div className="flex flex-col mt-10 lg:mt-0 gap-10 lg:gap-0 lg:flex-row relative flex-grow items-center lg:mx-6">
+          <div className="lg:w-1/2">
+            <h1 className="text-5xl md:text-6xl xl:text-8xl font-bold mb-6">
               Výkonnostní marketing pro&nbsp;makléře
             </h1>
             <p className="text-xl mb-8 max-w-2xl leading-relaxed">
@@ -147,17 +184,19 @@ export function App() {
               Mám zájem
             </Button>
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2 m-4 lg:m-0">
             <img
               src="/assets/images/hero.png"
-              className="w-[500px] h-auto m-auto"
+              className="md:w-[500px] h-auto m-auto"
               alt="Illustration of a person using a laptop"
             />
           </div>
 
-          <aside className="absolute bottom-4 right-4 bg-mustard-light w-64 h-64 rounded-full text-dark flex flex-col justify-center items-center text-center text-4xl">
+          <aside className="absolute bottom-0 right-0 bg-mustard-light w-32 md:w-64 h-32 md:h-64 rounded-full text-dark flex flex-col justify-center items-center text-center tex-xl md:text-4xl">
             jen za
-            <span className="font-bold text-5xl block">5.990 Kč</span>
+            <span className="font-bold text-3xl md:text-5xl block">
+              5.990 Kč
+            </span>
             měsíčně
           </aside>
         </div>
@@ -169,15 +208,17 @@ export function App() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="bg-light flex flex-col pt-20 pb-16 px-20 rounded-3xl text-dark"
+          className="bg-light flex flex-col p-6 pt-20 pb-16 lg:px-20 rounded-3xl text-dark"
         >
-          <h2 className="text-6xl font-bold mb-8">Prodávejte rychleji</h2>
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            Prodávejte rychleji
+          </h2>
           <p className="text-xl mb-14 leading-relaxed">
             Pomáháme realitním makléřům získávat víc zájemců a prodávat
             nemovitosti rychleji pomocí online kampaní.
           </p>
 
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {results.map((result, index) => (
               <ResultCard key={index} {...result} />
             ))}
@@ -189,23 +230,23 @@ export function App() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="flex pt-20 pb-16 px-20 text-dark"
+          className="flex flex-col md:flex-row gap-10 px-2 pt-0 lg:pt-20 pb-0 lg:pb-16 lg:px-20 text-dark"
         >
-          <div className="w-1/2">
+          <div className="md:w-1/2 flex items-center">
             <img
               src="/assets/images/wunsch.png"
               alt="Vladimr Wünsch"
-              className="w-[560px] object-cover h-auto rounded-3xl"
+              className="w-full md:w-[560px] object-cover h-auto rounded-3xl"
             />
           </div>
-          <div className="w-1/2 flex flex-col justify-center">
+          <div className="md:w-1/2 flex flex-col justify-center">
             <h2 className="text-5xl font-bold mb-8 leading-snug">
               Abyste prodali,
               <br />
               musíte být vidět
             </h2>
             <p className="text-xl leading-relaxed mb-14">
-              Doba, kdy lidé sami aktivně hledali byty, je pryč. Nastavíme
+              Doba, kdy lidé sami aktivně hledali byty, je pryč. Nastavíme{" "}
               <strong>cílené reklamy na Facebooku a Instagramu</strong>, které
               dostanou Vaše nabídky přímo před oči lidí, které hledáte.
             </p>
@@ -233,15 +274,17 @@ export function App() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="bg-secondary flex flex-col pt-20 pb-16 px-20 rounded-3xl text-foreground"
+          className="bg-secondary flex flex-col px-6 pt-20 pb-16 lg:px-20 rounded-3xl text-foreground"
         >
-          <h2 className="text-6xl font-bold mb-8">Jak to probíhá</h2>
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            Jak to probíhá
+          </h2>
           <p className="text-xl mb-14 leading-relaxed">
             Prodávat nemovitost nebylo nikdy jednodušší. Díky přesnému know-how
             víme, jak na to.
           </p>
 
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
             {steps.map((step, index) => (
               <StepCard key={index} index={index + 1} {...step} />
             ))}
@@ -257,9 +300,9 @@ export function App() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="flex pt-20 pb-16 px-20 text-dark items-center"
+          className="flex flex-col md:flex-row px-2 lg:pt-20 lg:pb-16 lg:px-20 text-dark items-center"
         >
-          <div className="w-1/2">
+          <div className="md:w-1/2">
             <q className="text-3xl font-bold leading-snug mb-8 block">
               Naše balíčky výkonnostního marketingu jsme navrhli tak, aby
               odpovídaly dynamickému prostředí realit. Nabízejí tak maximální
@@ -277,7 +320,7 @@ export function App() {
               </div>
             </div>
           </div>
-          <div className="w-1/2">
+          <div className="md:w-1/2">
             <img
               src="/assets/images/app.png"
               className="w-[750px] h-auto m-auto"
@@ -291,9 +334,9 @@ export function App() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="bg-light flex flex-col pt-20 pb-16 px-20 rounded-3xl text-dark"
+          className="bg-light flex flex-col px-6 pt-20 pb-16 lg:px-20 rounded-3xl text-dark"
         >
-          <h2 className="text-6xl font-bold mb-8 text-center">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8 text-center">
             Výhodné balíčky
           </h2>
           <p className="text-xl mb-14 leading-relaxed text-center">

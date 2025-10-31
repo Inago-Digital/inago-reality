@@ -8,14 +8,15 @@ export function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.2 }}
-      className="bg-primary grid grid-cols-2 gap-6 pt-10 pb-14 px-20 rounded-3xl text-foreground"
+      className="bg-primary grid grid-cols-1 lg:grid-cols-2 px-6 gap-6 pt-10 pb-14 lg:px-20 rounded-3xl text-foreground"
     >
       <div className="pt-14">
         <h2 className="text-4xl font-bold mb-6">Potřebujete více informací?</h2>
         <p className="mb-8 text-xl">
-          Rádi vám vše vysvětlíme na osobním callu.
+          <strong>Prodávejte nemovitosti rychleji</strong> díky chytré reklamě
+          na sociálních sítích.
         </p>
-        <div className="flex items-center space-x-8">
+        <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
           <Button href="/kontakt" variant="secondary" size="large">
             Chci call
           </Button>
@@ -33,56 +34,63 @@ export function Footer() {
         className="w-[650px] h-auto ml-auto"
         alt="Mobile open with facebook page"
       />
-      <div className="flex space-x-10">
+      <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-10">
         <p>&copy; 2025 Inago Digital</p>
-        <a href="/cookies" className="hover:underline">
+        <a href="/cookies" className="hover:underline w-fit">
           Nastavení cookies
         </a>
-        <a href="/privacy" className="hover:underline">
+        <a href="/privacy" className="hover:underline w-fit">
           Ochrana osobních údajů
         </a>
       </div>
-      <div className="flex ml-auto space-x-8 items-center">
-        <a href="https://inago.cz" target="_blank" rel="noopener noreferrer">
+      <div className="flex flex-col md:flex-row lg:ml-auto gap-6 md:space-x-8 md:items-center">
+        <a
+          className="order-2 md:order-1 w-fit"
+          href="https://inago.cz"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             src="/assets/graphics/powered-by-inago-light.svg"
             className="w-44 h-auto"
             alt="Powered by Inago Digital"
           />
         </a>
-        <a
-          href="https://www.instagram.com/inagocz/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/icons/instagram-light.svg"
-            className="w-7 h-7"
-            alt="Instagram Inago Digital"
-          />
-        </a>
-        <a
-          href="https://www.facebook.com/inagocz"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/icons/facebook-light.svg"
-            className="w-7 h-7"
-            alt="Facebook Inago Digital"
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/15787031"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/icons/linkedin-light.svg"
-            className="w-7 h-7"
-            alt="Instagram Inago Digital"
-          />
-        </a>
+        <div className="flex order-1 md:order-2 space-x-8 items-center">
+          <a
+            href="https://www.instagram.com/inagocz/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/assets/icons/instagram-light.svg"
+              className="w-7 h-7"
+              alt="Instagram Inago Digital"
+            />
+          </a>
+          <a
+            href="https://www.facebook.com/inagocz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/assets/icons/facebook-light.svg"
+              className="w-7 h-7"
+              alt="Facebook Inago Digital"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/15787031"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/assets/icons/linkedin-light.svg"
+              className="w-7 h-7"
+              alt="Instagram Inago Digital"
+            />
+          </a>
+        </div>
       </div>
     </motion.footer>
   )

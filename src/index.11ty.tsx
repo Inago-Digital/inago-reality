@@ -2,14 +2,23 @@ import { App } from "./components/App.11ty"
 
 export const data = {
   title: "Inago Reality",
+  description:
+    "Prodávejte své nemovitosti rychleji a efektivněji s Inago Reality. Využíváme cílené reklamy na sociálních sítích, profesionální fotografie a videa, virtuální prohlídky a správu poptávek, abychom maximalizovali dosah a přilákali vážné zájemce.",
 }
 
-export default function Page({ title }: { title: string }) {
+export default function Page({
+  title,
+  description,
+}: {
+  title: string
+  description: string
+}) {
   return (
     <html lang="cs">
       <head>
         <meta charSet="UTF-8" />
         <title>{title}</title>
+        <meta name="description" content={description} />
         <link href="/style/global.css" rel="stylesheet" />
         <link
           rel="icon"

@@ -1,16 +1,24 @@
-import { App } from "./components/App.11ty"
 import { Contact } from "./components/Contact.11ty"
 
 export const data = {
   title: "Kontakt - Inago Reality",
+  description:
+    "Kontaktujte Inago Reality pro rychlý a efektivní prodej vašich nemovitostí. Jsme tu, abychom vám pomohli s profesionálními službami a podporou.",
 }
 
-export default function Page({ title }: { title: string }) {
+export default function Page({
+  title,
+  description,
+}: {
+  title: string
+  description: string
+}) {
   return (
     <html lang="cs">
       <head>
         <meta charSet="UTF-8" />
         <title>{title}</title>
+        <meta name="description" content={description} />
         <link href="/style/global.css" rel="stylesheet" />
         <link
           rel="icon"
