@@ -1,7 +1,12 @@
 import { hydrateRoot } from "react-dom/client"
 import { App } from "./components/App.11ty"
+import { Contact } from "./components/Contact.11ty"
 
-const root = document.getElementById("app")
+const registry = { App, Contact }
+
+const root = document.getElementById("root")
 if (root) {
-  hydrateRoot(root, <App />)
+  const compName = (root.dataset.component as keyof typeof registry) ?? "App"
+  const Component = registry[compName] ?? App
+  hydrateRoot(root, <Component />)
 }

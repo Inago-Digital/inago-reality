@@ -1,7 +1,8 @@
 import { App } from "./components/App.11ty"
+import { Contact } from "./components/Contact.11ty"
 
 export const data = {
-  title: "Inago Reality",
+  title: "Kontakt - Inago Reality",
 }
 
 export default function Page({ title }: { title: string }) {
@@ -29,8 +30,8 @@ export default function Page({ title }: { title: string }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
-        <div id="root" data-component="App">
-          <App />
+        <div id="root" data-component="Contact">
+          <Contact />
         </div>
 
         <script src="/assets/client.min.js"></script>

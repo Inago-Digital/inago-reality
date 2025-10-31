@@ -108,7 +108,7 @@ export function App() {
 
           <a href="/" className="sr-only-focusable">
             <img
-              src="assets/graphics/inago-logo-light.svg"
+              src="/assets/graphics/inago-logo-light.svg"
               alt="Inago Logo"
               className="h-16"
             />
@@ -120,13 +120,13 @@ export function App() {
                 Home
               </a>
             </li>
-            <li>
+            {/* <li>
               <a href="/o-nas" className="hover:light transition-colors">
                 O nás
               </a>
-            </li>
+            </li> */}
             <li>
-              <Button variant="secondary" size="small">
+              <Button href="/kontakt" variant="secondary" size="small">
                 Kontakt
               </Button>
             </li>
@@ -141,15 +141,15 @@ export function App() {
             <p className="text-xl mb-8 max-w-2xl leading-relaxed">
               <strong>Prodávejte nemovitosti rychleji</strong> díky chytré
               reklamě na sociálních sítích. Vaše nabídky{" "}
-              <strong>uvidí lidé, kteří skutečně kupují</strong>.
+              <strong>uvidí lidé, kteří skutečně kupují.</strong>
             </p>
-            <Button variant="secondary" size="large">
+            <Button href="/kontakt" variant="secondary" size="large">
               Mám zájem
             </Button>
           </div>
           <div className="w-1/2">
             <img
-              src="assets/images/hero.png"
+              src="/assets/images/hero.png"
               className="w-[500px] h-auto m-auto"
               alt="Illustration of a person using a laptop"
             />
@@ -193,7 +193,7 @@ export function App() {
         >
           <div className="w-1/2">
             <img
-              src="assets/images/wunsch.png"
+              src="/assets/images/wunsch.png"
               alt="Vladimr Wünsch"
               className="w-[560px] object-cover h-auto rounded-3xl"
             />
@@ -217,7 +217,7 @@ export function App() {
                   className="font-semibold text-2xl border-t border-light py-10 last:border-b"
                 >
                   <img
-                    src="assets/icons/flag.svg"
+                    src="/assets/icons/flag.svg"
                     alt=""
                     className="inline-block w-6 h-6 mr-4"
                   />
@@ -247,7 +247,7 @@ export function App() {
             ))}
           </section>
 
-          <Button variant="primary" size="large">
+          <Button href="/kontakt" variant="primary" size="large">
             Mám zájem
           </Button>
         </motion.section>
@@ -267,7 +267,7 @@ export function App() {
             </q>
             <div className="flex items-center">
               <img
-                src="assets/images/testimonial-wunsch.png"
+                src="/assets/images/testimonial-wunsch.png"
                 alt="Photo of Vladimír Wünsch"
                 className="w-20 h-20 rounded-full inline-block mr-6"
               />
@@ -279,7 +279,7 @@ export function App() {
           </div>
           <div className="w-1/2">
             <img
-              src="assets/images/app.png"
+              src="/assets/images/app.png"
               className="w-[750px] h-auto m-auto"
               alt="Illustration of a person using a laptop"
             />

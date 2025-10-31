@@ -14,7 +14,7 @@ export function Button(props: ButtonProps) {
   } = props
 
   const baseClasses =
-    "font-bold rounded-full focus:outline-none text-xl transition-colors cursor-pointer flex items-center justify-center"
+    "font-bold rounded-full focus:outline-none text-xl transition-colors cursor-pointer flex items-center justify-center text-foreground"
 
   const sizes = {
     small: "h-14 w-48",
@@ -25,7 +25,7 @@ export function Button(props: ButtonProps) {
   const variants = {
     primary: "bg-primary hover:bg-primary-light",
     secondary: "bg-secondary hover:bg-secondary-light",
-    accent: "bg-accent hover:bg-accent-light text-foreground",
+    accent: "bg-accent hover:bg-accent-light",
   }
 
   const restAsAnchor = rest as AnchorHTMLAttributes<HTMLAnchorElement>

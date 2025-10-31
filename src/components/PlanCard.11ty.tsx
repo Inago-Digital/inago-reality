@@ -39,11 +39,7 @@ export function PlanCard(plan: Plan) {
         ) : (
           <span className="text-2xl font-bold text-primary">{plan.price}</span>
         )}
-        <Button
-          href="https://calendly.com/adam-bitez/"
-          variant="accent"
-          size="medium"
-        >
+        <Button href="/kontakt" variant="accent" size="medium">
           Mám zájem
         </Button>
       </div>

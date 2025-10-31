@@ -29,7 +29,7 @@ export function Footer() {
         </div>
       </div>
       <img
-        src="assets/images/footer.png"
+        src="/assets/images/footer.png"
         className="w-[650px] h-auto ml-auto"
         alt="Mobile open with facebook page"
       />
@@ -45,7 +45,7 @@ export function Footer() {
       <div className="flex ml-auto space-x-8 items-center">
         <a href="https://inago.cz" target="_blank" rel="noopener noreferrer">
           <img
-            src="assets/graphics/powered-by-inago.svg"
+            src="/assets/graphics/powered-by-inago-light.svg"
             className="w-44 h-auto"
             alt="Powered by Inago Digital"
           />
@@ -56,7 +56,7 @@ export function Footer() {
           rel="noopener noreferrer"
         >
           <img
-            src="assets/icons/instagram-light.svg"
+            src="/assets/icons/instagram-light.svg"
             className="w-7 h-7"
             alt="Instagram Inago Digital"
           />
@@ -67,7 +67,7 @@ export function Footer() {
           rel="noopener noreferrer"
         >
           <img
-            src="assets/icons/facebook-light.svg"
+            src="/assets/icons/facebook-light.svg"
             className="w-7 h-7"
             alt="Facebook Inago Digital"
           />
@@ -78,7 +78,7 @@ export function Footer() {
           rel="noopener noreferrer"
         >
           <img
-            src="assets/icons/linkedin-light.svg"
+            src="/assets/icons/linkedin-light.svg"
             className="w-7 h-7"
             alt="Instagram Inago Digital"
           />
