@@ -1,9 +1,12 @@
 import { Button } from "./Button.11ty"
 import { ResultCard } from "./ResultCard.11ty"
-import { Result } from "./Results.types"
+import { Result } from "./Result.types"
 import { motion } from "framer-motion"
 import { Step } from "./Step.type"
 import { StepCard } from "./StepCard.11ty"
+import { Plan } from "./Plan.type"
+import { PlanCard } from "./PlanCard.11ty"
+import { Footer } from "./Footer.11ty"
 
 const results: Result[] = [
   {
@@ -50,6 +53,47 @@ const steps: Step[] = [
     title: <>Optimalizujeme a&nbsp;reportujeme</>,
     content:
       "Sledujeme výkon a průběžně upravujeme kampaně pro maximální efekt.",
+  },
+]
+
+const plans: Plan[] = [
+  {
+    title: "Reality Booster STANDARD",
+    description: (
+      <>
+        Pro makléře, kteří chtějí zviditelnit své nabídky a&nbsp;získat stabilní
+        přísun zájemců. Ideální volba pro jednotlivce nebo menší realitní
+        kanceláře.
+      </>
+    ),
+    points: [
+      "Správa a optimalizace Meta Ads kampaní",
+      "Tvorba textů pro inzerci",
+      "Cílení na aktivní zájemce o koupi",
+      "Pravidelný měsíční report",
+    ],
+    price: "8.990 Kč",
+    isSale: true,
+    salePrice: "5.990 Kč",
+  },
+  {
+    title: "Reality Booster PLATINUM",
+    description: (
+      <>
+        Pro ty, které chtějí dominovat trhu. Balíček kombinuje výkonnostní
+        kampaně s&nbsp;remarketingem a&nbsp;pokročilou analýzou pro kampaně
+        s&nbsp;vyššími rozpočty.
+      </>
+    ),
+    points: [
+      "Správa a optimalizace Meta Ads kampaní",
+      "Testování variant kampaní",
+      "Tvorba vizuálů a textů na míru",
+      "Pravidelný měsíční report a konzultace",
+    ],
+    price: "12.990 Kč",
+    isSale: true,
+    salePrice: "8.990 Kč",
   },
 ]
 
@@ -252,18 +296,20 @@ export function App() {
           <h2 className="text-6xl font-bold mb-8 text-center">
             Výhodné balíčky
           </h2>
-          <p className="text-xl mb-14 leading-relaxed">
-            Pomáháme realitním makléřům získávat víc zájemců a prodávat
-            nemovitosti rychleji pomocí online kampaní.
+          <p className="text-xl mb-14 leading-relaxed text-center">
+            Získejte víc poptávek na vaše nemovitosti díky výkonnostnímu
+            marketingu na sociálních sítích.
           </p>
 
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {results.map((result, index) => (
-              <ResultCard key={index} {...result} />
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {plans.map((plan, index) => (
+              <PlanCard key={index} {...plan} />
             ))}
           </section>
         </motion.section>
       </article>
+
+      <Footer />
     </div>
   )
 }

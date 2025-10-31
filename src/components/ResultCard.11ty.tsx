@@ -1,4 +1,4 @@
-import { Result } from "./Results.types"
+import { Result } from "./Result.types"
 
 export function ResultCard(result: Result) {
   return (

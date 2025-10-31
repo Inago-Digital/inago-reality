@@ -25,7 +25,7 @@ export function Button(props: ButtonProps) {
   const variants = {
     primary: "bg-primary hover:bg-primary-light",
     secondary: "bg-secondary hover:bg-secondary-light",
-    accent: "bg-accent hover:bg-accent-light",
+    accent: "bg-accent hover:bg-accent-light text-foreground",
   }
 
   const restAsAnchor = rest as AnchorHTMLAttributes<HTMLAnchorElement>
