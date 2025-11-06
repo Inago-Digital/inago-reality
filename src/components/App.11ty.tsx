@@ -8,6 +8,7 @@ import { Plan } from "./Plan.type"
 import { PlanCard } from "./PlanCard.11ty"
 import { Footer } from "./Footer.11ty"
 import { useState } from "react"
+import { CookieConsent } from "@meui-creative/cookies"
 
 const results: Result[] = [
   {
@@ -322,7 +323,7 @@ export function App() {
           </div>
           <div className="md:w-1/2">
             <img
-              src="/assets/images/app.png"
+              src="/assets/images/testemonial.jpg"
               className="w-[750px] h-auto m-auto"
               alt="Illustration of a person using a laptop"
             />
@@ -353,6 +354,13 @@ export function App() {
       </article>
 
       <Footer />
+
+      <CookieConsent
+        language="cs"
+        accentColor="#FF4157"
+        mode="strict"
+        preset="minimal"
+      />
     </div>
   )
 }

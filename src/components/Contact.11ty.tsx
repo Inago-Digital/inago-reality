@@ -4,6 +4,7 @@ import { Input } from "./Input.11ty"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { generateHTMLMessage } from "../utils/generateHTMLMessage"
+import { CookieConsent } from "@meui-creative/cookies"
 
 type ContactUsFormProps = {
   name: string
@@ -227,7 +228,7 @@ export function Contact() {
                     />
                   </a>
 
-                  <a
+                  {/* <a
                     href="#"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -238,7 +239,7 @@ export function Contact() {
                       alt="Telegram logo"
                       className="w-6 h-6 mr-1"
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
 
@@ -374,6 +375,13 @@ export function Contact() {
           </div>
         </footer>
       </header>
+
+      <CookieConsent
+        language="cs"
+        accentColor="#FF4157"
+        mode="strict"
+        preset="minimal"
+      />
     </div>
   )
 }

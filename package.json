@@ -7,12 +7,13 @@
   "scripts": {
     "dev": "esbuild src/client.tsx --bundle --minify --outfile=_site/assets/client.min.js --format=esm --sourcemap --watch=forever & eleventy --formats=11ty.jsx,11ty.tsx --serve & tailwindcss -i ./src/style/global.css -o ./_site/style/global.css --watch",
     "build": "esbuild src/client.tsx --bundle --minify --define:process.env.NODE_ENV=\\\"production\\\" --outfile=_site/assets/client.min.js --format=esm && tailwindcss -i ./src/style/global.css -o ./_site/style/global.css --minify && eleventy --formats=11ty.jsx,11ty.tsx"
-    },
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@meui-creative/cookies": "^4.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
     "react": "^19.2.0",
