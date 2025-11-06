@@ -310,7 +310,7 @@ export function App() {
           className="max-w-[1800px] flex-col md:flex-row mx-auto flex px-2 lg:pt-20 lg:pb-16 lg:px-20 text-dark items-center"
         >
           <div className="md:w-1/2">
-            <q className="text-2xl md:text-3xl font-bold leading-snug mb-8 block">
+            <q className="text-2xl md:text-3xl font-bold leading-snug md:leading-10 mb-8 block">
               Naše balíčky výkonnostního marketingu jsme navrhli tak, aby
               odpovídaly dynamickému prostředí realit. Nabízejí tak maximální
               využití výkonu za rozumnou cenu.
