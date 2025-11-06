@@ -20,7 +20,12 @@ export function Footer() {
           <Button href="/kontakt" variant="secondary" size="large">
             Chci call
           </Button>
-          <a href="">
+          <a
+            href="https://calendly.com/adam-bitez/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ,
             <img
               src="/assets/graphics/calendly-logo.svg"
               alt="Calendly logo"
@@ -36,10 +41,12 @@ export function Footer() {
       />
       <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-10">
         <p>&copy; 2025 Inago Digital</p>
-        <a href="/cookies" className="hover:underline w-fit">
-          Nastavení cookies
-        </a>
-        <a href="/privacy" className="hover:underline w-fit">
+        <a
+          href="https://inago.cz/ochrana-osobnich-udaju/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline w-fit"
+        >
           Ochrana osobních údajů
         </a>
       </div>

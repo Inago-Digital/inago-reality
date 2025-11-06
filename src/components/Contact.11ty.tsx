@@ -3,6 +3,7 @@ import { Button } from "./Button.11ty"
 import { Input } from "./Input.11ty"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
+import { generateHTMLMessage } from "../utils/generateHTMLMessage"
 
 type ContactUsFormProps = {
   name: string
@@ -22,8 +23,31 @@ export function Contact() {
     setIsOpen(!isOpen)
   }
 
-  const onSubmit = (data: ContactUsFormProps) => {
-    console.log(data)
+  const onSubmit = async (data: ContactUsFormProps) => {
+    const response = await fetch("https://email.hangerthem.com/send", {
+      method: "POST",
+      body: JSON.stringify({
+        to: "info@inago.cz",
+        subject: "Nová zpráva z Inago Reality",
+        name: data.name,
+        message: `
+          Name: ${data.name}
+          Phone: ${data.phone}
+        `,
+        html: generateHTMLMessage(data),
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    if (response.ok) {
+      alert("Děkujeme za váš zájem! Ozveme se vám co nejdříve.")
+    } else {
+      alert(
+        "Nastala chyba při odesílání formuláře. Zkuste to prosím znovu později."
+      )
+    }
   }
 
   return (
@@ -95,8 +119,10 @@ export function Contact() {
           <div className="lg:w-1/2 m-0 lg:ml-6 mt-16">
             <h1 className="font-bold text-5xl mb-8">Prodávejte rychleji</h1>
             <p className="text-xl">
-              Doba, kdy lidé sami aktivně hledali byty, je pryč. Nastavíme{" "}
-              <strong>cílené reklamy na Facebooku a Instagramu.</strong>
+              Ozvěte se nám ještě dnes a&nbsp;
+              <strong>
+                prodávejte své nemovitosti rychleji díky cílené reklamě.
+              </strong>
             </p>
 
             <form
@@ -216,7 +242,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="flex flex-col justify-between">
+              <div className="flex flex-col gap-2 justify-between">
                 <a
                   href="tel:+420602202876"
                   className="text-lg md:text-xl xl:text-2xl font-bold block hover:underline"
@@ -224,7 +250,7 @@ export function Contact() {
                   <img
                     src="/assets/icons/phone.svg"
                     alt="Phone icon"
-                    className="w-5 h-5 inline-block mr-2"
+                    className="w-5 h-5 inline-block mr-4"
                   />
                   +420 602 202 876
                 </a>
@@ -236,7 +262,7 @@ export function Contact() {
                   <img
                     src="/assets/icons/email.svg"
                     alt="Phone icon"
-                    className="w-5 h-5 inline-block mr-2"
+                    className="w-5 h-5 inline-block mr-4"
                   />
                   vladimir.wunsch@inago.cz
                 </a>
@@ -288,10 +314,12 @@ export function Contact() {
         <footer className="flex flex-col lg:flex-row mt-20 mt-10 gap-10 lg:gap-0">
           <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-10">
             <p>&copy; 2025 Inago Digital</p>
-            <a href="/cookies" className="hover:underline w-fit">
-              Nastavení cookies
-            </a>
-            <a href="/privacy" className="hover:underline w-fit">
+            <a
+              href="https://inago.cz/ochrana-osobnich-udaju/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline w-fit"
+            >
               Ochrana osobních údajů
             </a>
           </div>
