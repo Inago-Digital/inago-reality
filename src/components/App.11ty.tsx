@@ -8,7 +8,6 @@ import { Plan } from "./Plan.type"
 import { PlanCard } from "./PlanCard.11ty"
 import { Footer } from "./Footer.11ty"
 import { useState } from "react"
-import { CookieConsent } from "@meui-creative/cookies"
 
 const results: Result[] = [
   {
@@ -363,11 +362,10 @@ export function App() {
 
       <Footer />
 
-      <CookieConsent
-        language="cs"
-        accentColor="#FF4157"
-        mode="strict"
-        preset="minimal"
+      <script
+        id="cookieyes"
+        type="text/javascript"
+        src="https://cdn-cookieyes.com/client_data/5d45a5dfcfbd3be48e5ebffa/script.js"
       />
     </div>
   )
