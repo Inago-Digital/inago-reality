@@ -237,11 +237,35 @@ export function App() {
           className="max-w-[1800px] flex-col md:flex-row gap-10 mx-auto flex px-2 pt-0 lg:pt-20 pb-0 lg:pb-16 lg:px-20 text-dark"
         >
           <div className="md:w-1/2 flex items-center">
-            <img
-              src="/assets/images/wunsch.png"
-              alt="Vladimr Wünsch"
-              className="w-full md:w-[560px] object-cover h-auto rounded-3xl"
-            />
+            <motion.div
+              className="w-full"
+              onViewportEnter={() => {
+                const v = document.getElementById(
+                  "main-video"
+                ) as HTMLVideoElement | null
+                v?.play().catch(() => {
+                  /* ignore play rejection (browser/autoplay) */
+                })
+              }}
+              onViewportLeave={() => {
+                const v = document.getElementById(
+                  "main-video"
+                ) as HTMLVideoElement | null
+                v?.pause()
+              }}
+              viewport={{ amount: 0.5 }}
+            >
+              <video
+                id="main-video"
+                className="w-full md:w-[560px] object-cover h-auto rounded-3xl"
+                muted
+                loop
+                playsInline
+              >
+                <source src="/assets/videos/main-video.mp4" type="video/mp4" />
+                Váš prohlížeč nepodporuje přehrávání videa.
+              </video>
+            </motion.div>
           </div>
           <div className="md:w-1/2 flex flex-col justify-center">
             <h2 className="text-5xl font-bold mb-8 leading-snug">
