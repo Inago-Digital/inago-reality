@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "../utils/cn"
+import { motion } from "framer-motion"
 import { ButtonProps } from "./Button.types"
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react"
 
@@ -28,8 +29,35 @@ export function Button(props: ButtonProps) {
     accent: "bg-accent hover:bg-accent-light",
   }
 
-  const restAsAnchor = rest as AnchorHTMLAttributes<HTMLAnchorElement>
-  const restAsButton = rest as ButtonHTMLAttributes<HTMLButtonElement>
+  const {
+    onDrag,
+    onDragStart,
+    onDragEnd,
+    onAnimationStart,
+    onAnimationEnd,
+    ...restAsAnchor
+  } = rest as AnchorHTMLAttributes<HTMLAnchorElement> & {
+    onDrag?: unknown
+    onDragStart?: unknown
+    onDragEnd?: unknown
+    onAnimationStart?: unknown
+    onAnimationEnd?: unknown
+  }
+
+  const {
+    onDrag: _onDrag,
+    onDragStart: _onDragStart,
+    onDragEnd: _onDragEnd,
+    onAnimationStart: _onAnimationStart,
+    onAnimationEnd: _onAnimationEnd,
+    ...restAsButton
+  } = rest as ButtonHTMLAttributes<HTMLButtonElement> & {
+    onDrag?: unknown
+    onDragStart?: unknown
+    onDragEnd?: unknown
+    onAnimationStart?: unknown
+    onAnimationEnd?: unknown
+  }
 
   const disabled = Boolean((rest as unknown as { disabled?: boolean }).disabled)
 
@@ -38,15 +66,17 @@ export function Button(props: ButtonProps) {
     sizes[size],
     variants[variant],
     disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "",
-    className
+    className,
   )
 
   const isExternal = typeof href === "string" && /^(https?:)?\/\//.test(href)
 
   if (href) {
     return (
-      <a
+      <motion.a
         href={href}
+        whileHover={{ scale: disabled ? 1 : 1.02 }}
+        whileTap={{ scale: disabled ? 1 : 0.98 }}
         className={finalClassName}
         aria-disabled={disabled || undefined}
         tabIndex={disabled ? -1 : undefined}
@@ -59,17 +89,19 @@ export function Button(props: ButtonProps) {
         {...restAsAnchor}
       >
         {props.children}
-      </a>
+      </motion.a>
     )
   }
 
   return (
-    <button
+    <motion.button
       type={restAsButton.type ?? "button"}
+      whileHover={{ scale: disabled ? 1 : 1.02 }}
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
       className={finalClassName}
       {...restAsButton}
     >
       {props.children}
-    </button>
+    </motion.button>
   )
 }

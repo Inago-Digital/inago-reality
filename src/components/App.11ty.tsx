@@ -4,10 +4,11 @@ import { Result } from "./Result.types"
 import { motion } from "framer-motion"
 import { Step } from "./Step.type"
 import { StepCard } from "./StepCard.11ty"
-import { Plan } from "./Plan.type"
+import { Plan, PlanSchema } from "./Plan.type"
 import { PlanCard } from "./PlanCard.11ty"
 import { Footer } from "./Footer.11ty"
 import { useState } from "react"
+import { CTA } from "./CTA"
 
 const results: Result[] = [
   {
@@ -57,9 +58,13 @@ const steps: Step[] = [
   },
 ]
 
-const plans: Plan[] = [
+const plans: Plan[] = PlanSchema.array().parse([
   {
-    title: "Reality Booster STANDARD",
+    title: (
+      <>
+        Reality Booster <span className="text-primary">STANDARD</span>
+      </>
+    ),
     description: (
       <>
         Pro makléře, kteří chtějí zviditelnit své nabídky a&nbsp;získat stabilní
@@ -68,17 +73,31 @@ const plans: Plan[] = [
       </>
     ),
     points: [
-      "Správa a optimalizace Meta Ads kampaní",
-      "Tvorba textů pro inzerci",
-      "Cílení na aktivní zájemce o koupi",
-      "Pravidelný měsíční report",
+      {
+        value: (
+          <>
+            Správa a optimalizace Meta Ads kampaní{" "}
+            <span className="text-primary">(4 kampaně)</span>
+          </>
+        ),
+      },
+      { value: "Tvorba textů pro inzerci" },
+      { value: "Cílení na aktivní zájemce o koupi" },
+      { value: "Pravidelný měsíční report" },
+      { value: "Škálování Meta Ads kampaní", included: false },
+      { value: "Testování variant kampaní A/B", included: false },
+      { value: "Tvorba vizuálů a textů na míru", included: false },
     ],
     price: "8.990 Kč",
     isSale: true,
     salePrice: "5.990 Kč",
   },
   {
-    title: "Reality Booster PLATINUM",
+    title: (
+      <>
+        Reality Booster <span className="text-primary">PLATINUM</span>
+      </>
+    ),
     description: (
       <>
         Pro ty, které chtějí dominovat trhu. Balíček kombinuje výkonnostní
@@ -87,16 +106,26 @@ const plans: Plan[] = [
       </>
     ),
     points: [
-      "Správa a optimalizace Meta Ads kampaní",
-      "Testování variant kampaní",
-      "Tvorba vizuálů a textů na míru",
-      "Pravidelný měsíční report a konzultace",
+      {
+        value: (
+          <>
+            Správa a optimalizace Meta Ads kampaní{" "}
+            <span className="text-primary">(8 kampaní)</span>
+          </>
+        ),
+      },
+      { value: "Tvorba textů pro inzerci" },
+      { value: "Cílení na aktivní zájemce o koupi" },
+      { value: "Pravidelný měsíční report" },
+      { value: "Škálování Meta Ads kampaní" },
+      { value: "Testování variant kampaní A/B" },
+      { value: "Tvorba vizuálů a textů na míru" },
     ],
     price: "12.990 Kč",
     isSale: true,
     salePrice: "8.990 Kč",
   },
-]
+])
 
 export function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -241,7 +270,7 @@ export function App() {
               className="w-full"
               onViewportEnter={() => {
                 const v = document.getElementById(
-                  "main-video"
+                  "main-video",
                 ) as HTMLVideoElement | null
                 v?.play().catch(() => {
                   /* ignore play rejection (browser/autoplay) */
@@ -249,7 +278,7 @@ export function App() {
               }}
               onViewportLeave={() => {
                 const v = document.getElementById(
-                  "main-video"
+                  "main-video",
                 ) as HTMLVideoElement | null
                 v?.pause()
               }}
@@ -380,6 +409,8 @@ export function App() {
                 <PlanCard key={index} {...plan} />
               ))}
             </section>
+
+            <CTA />
           </div>
         </motion.section>
       </article>

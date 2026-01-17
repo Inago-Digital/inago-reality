@@ -11,14 +11,18 @@ export function PlanCard(plan: Plan) {
           {plan.points.map((point, index) => (
             <li
               key={index}
-              className="flex items-center text-lg lg:text-2xl font-semibold"
+              className="flex items-center gap-4 text-lg lg:text-xl font-semibold"
             >
               <img
-                src="/assets/icons/checkmark.svg"
+                src={
+                  point.included
+                    ? "/assets/icons/checkmark.svg"
+                    : "/assets/icons/cross.svg"
+                }
                 alt="Checkmark icon"
-                className="inline-block w-5 h-5 mr-4"
+                className="inline-block w-5 h-5"
               />
-              {point}
+              <p>{point.value}</p>
             </li>
           ))}
         </ul>
