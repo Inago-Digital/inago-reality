@@ -28,7 +28,6 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              ,
               <img
                 src="/assets/graphics/calendly-logo.svg"
                 alt="Calendly logo"
