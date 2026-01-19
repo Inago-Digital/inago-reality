@@ -16,10 +16,21 @@ export const faqs: FAQ[] = [
     ),
   },
   {
-    question:
-      "Jaký je rozdíl mezi „Sponzorovaným příspěvkem“ a správou Meta Ads?",
-    answer:
-      "Většina makléřů pouze klikne na tlačítko „Propagovat příspěvek“, což je velmi omezený nástroj. Naše správa v rámci balíčků probíhá přes profesionální Business Manager, kde nastavujeme pokročilé cílení na aktivní zájemce a optimalizujeme cenu za každou získanou poptávku.",
+    question: "Jaký je rozdíl mezi správou kampaní a sponzorováním příspěvků?",
+    answer: (
+      <>
+        Správa kampaní znamená, že pro vás od nuly vytvoříme kompletní reklamní
+        kampaň - od návrhu až po vyhodnocení. Vybereme vhodné formáty, navrhneme
+        obsah i texty, kampaň profesionálně nastavíme, průběžně optimalizujeme a
+        následně vyhodnotíme. Tyto kampaně tvoří jádro úspěšného marketingu a
+        dosahují dlouhodobě nejlepší výkonnosti v získávání kontaktů.
+        <span className="block h-4" />
+        Sponzorování příspěvků spočívá v propagaci již publikovaného příspěvku
+        na sociálních sítích s cílem zvýšit jeho dosah. V tomto případě se
+        neprovádí pokročilá optimalizace, detailní vyhodnocení výkonu a není
+        zaměřen na získávání kontaktů.
+      </>
+    ),
   },
   {
     question: "S kým od vás budu v kontaktu a jak probíhá komunikace?",
