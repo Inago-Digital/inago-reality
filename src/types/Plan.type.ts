@@ -8,9 +8,10 @@ export const PlanSchema = z.object({
       value: z.any(),
       included: z.boolean().default(true).optional(),
     })
-    .array(),
+    .array()
+    .optional(),
   price: z.string(),
-  isSale: z.boolean().optional(),
+  isSale: z.boolean().default(false).optional(),
   salePrice: z.string().optional(),
 })
 

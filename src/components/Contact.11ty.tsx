@@ -45,7 +45,7 @@ export function Contact() {
       alert("Děkujeme za váš zájem! Ozveme se vám co nejdříve.")
     } else {
       alert(
-        "Nastala chyba při odesílání formuláře. Zkuste to prosím znovu později."
+        "Nastala chyba při odesílání formuláře. Zkuste to prosím znovu později.",
       )
     }
   }
@@ -73,11 +73,11 @@ export function Contact() {
                   Home
                 </a>
               </li>
-              {/* <li>
-              <a href="/o-nas" className="hover:light transition-colors">
-                O nás
-              </a>
-            </li> */}
+              <li>
+                <a href="/ceny" className="hover:light transition-colors">
+                  Ceny
+                </a>
+              </li>
               <li>
                 <Button href="/kontakt" variant="primary" size="small">
                   Kontakt

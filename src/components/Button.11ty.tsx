@@ -2,7 +2,7 @@
 
 import { cn } from "../utils/cn"
 import { motion } from "framer-motion"
-import { ButtonProps } from "./Button.types"
+import { ButtonProps } from "../types/Button.types"
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react"
 
 export function Button(props: ButtonProps) {

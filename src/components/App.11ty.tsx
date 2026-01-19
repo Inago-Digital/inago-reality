@@ -1,131 +1,15 @@
 import { Button } from "./Button.11ty"
 import { ResultCard } from "./ResultCard.11ty"
-import { Result } from "./Result.types"
 import { motion } from "framer-motion"
-import { Step } from "./Step.type"
 import { StepCard } from "./StepCard.11ty"
-import { Plan, PlanSchema } from "./Plan.type"
 import { PlanCard } from "./PlanCard.11ty"
 import { Footer } from "./Footer.11ty"
 import { useState } from "react"
 import { CTA } from "./CTA"
-
-const results: Result[] = [
-  {
-    title: <>Více poptávek od&nbsp;zájemců</>,
-    color: "bg-lavender-light",
-    icon: "assets/icons/meter.svg",
-    content:
-      "Pomocí cílené reklamy na sociálních sítích přivedeme zájemce o inzerovanou nemovitost.",
-  },
-  {
-    title: "Budete vidět online",
-    color: "bg-primary",
-    icon: "assets/icons/globe.svg",
-    content:
-      "Vaše nabídky se zobrazí relevantním lidem, kteří právě hledají nové bydlení.",
-  },
-  {
-    title: <>Méně starostí s&nbsp;reklamou</>,
-    color: "bg-mustard-light",
-    icon: "assets/icons/bookmark.svg",
-    content:
-      "O celý výkonnostní marketing se postaráme za vás. Od strategie až po reporting.",
-  },
-]
-
-const musts = [
-  "Cílení dle lokality, nemovitosti a chování uživatelů",
-  "Reklamy optimalizujeme a vyhodnocujeme",
-  "Makléř má neustálý přehled o výkonu",
-]
-
-const steps: Step[] = [
-  {
-    title: "Získáme od Vás podklady",
-    content:
-      "Jednoduše nám pošlete jakou nemovitost chcete zviditelnit a my se o vše postaráme.",
-  },
-  {
-    title: "Vytvoříme kampaň",
-    content:
-      "Podle typu nemovitosti, regionu a dalších parametrů vytvoříme přesné zacílení. ",
-  },
-  {
-    title: <>Optimalizujeme a&nbsp;reportujeme</>,
-    content:
-      "Sledujeme výkon a průběžně upravujeme kampaně pro maximální efekt.",
-  },
-]
-
-const plans: Plan[] = PlanSchema.array().parse([
-  {
-    title: (
-      <>
-        Reality Booster <span className="text-primary">STANDARD</span>
-      </>
-    ),
-    description: (
-      <>
-        Pro makléře, kteří chtějí zviditelnit své nabídky a&nbsp;získat stabilní
-        přísun zájemců. Ideální volba pro jednotlivce nebo menší realitní
-        kanceláře.
-      </>
-    ),
-    points: [
-      {
-        value: (
-          <>
-            Správa a optimalizace Meta Ads kampaní{" "}
-            <span className="text-primary">(4 kampaně)</span>
-          </>
-        ),
-      },
-      { value: "Tvorba textů pro inzerci" },
-      { value: "Cílení na aktivní zájemce o koupi" },
-      { value: "Pravidelný měsíční report" },
-      { value: "Škálování Meta Ads kampaní", included: false },
-      { value: "Testování variant kampaní A/B", included: false },
-      { value: "Tvorba vizuálů a textů na míru", included: false },
-    ],
-    price: "8.990 Kč",
-    isSale: true,
-    salePrice: "5.990 Kč",
-  },
-  {
-    title: (
-      <>
-        Reality Booster <span className="text-primary">PLATINUM</span>
-      </>
-    ),
-    description: (
-      <>
-        Pro ty, které chtějí dominovat trhu. Balíček kombinuje výkonnostní
-        kampaně s&nbsp;remarketingem a&nbsp;pokročilou analýzou pro kampaně
-        s&nbsp;vyššími rozpočty.
-      </>
-    ),
-    points: [
-      {
-        value: (
-          <>
-            Správa a optimalizace Meta Ads kampaní{" "}
-            <span className="text-primary">(8 kampaní)</span>
-          </>
-        ),
-      },
-      { value: "Tvorba textů pro inzerci" },
-      { value: "Cílení na aktivní zájemce o koupi" },
-      { value: "Pravidelný měsíční report" },
-      { value: "Škálování Meta Ads kampaní" },
-      { value: "Testování variant kampaní A/B" },
-      { value: "Tvorba vizuálů a textů na míru" },
-    ],
-    price: "12.990 Kč",
-    isSale: true,
-    salePrice: "8.990 Kč",
-  },
-])
+import { plans } from "../data/plants"
+import { results } from "../data/results"
+import { musts } from "../data/musts"
+import { steps } from "../data/steps"
 
 export function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -157,11 +41,11 @@ export function App() {
                   Home
                 </a>
               </li>
-              {/* <li>
-              <a href="/o-nas" className="hover:light transition-colors">
-                O nás
-              </a>
-            </li> */}
+              <li>
+                <a href="/ceny" className="hover:light transition-colors">
+                  Ceny
+                </a>
+              </li>
               <li>
                 <Button href="/kontakt" variant="secondary" size="small">
                   Kontakt
@@ -252,7 +136,7 @@ export function App() {
 
             <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {results.map((result, index) => (
-                <ResultCard key={index} {...result} />
+                <ResultCard key={index} result={result} />
               ))}
             </section>
           </div>
@@ -344,7 +228,7 @@ export function App() {
 
             <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
               {steps.map((step, index) => (
-                <StepCard key={index} index={index + 1} {...step} />
+                <StepCard key={index} index={index + 1} step={step} />
               ))}
             </section>
 
@@ -406,7 +290,7 @@ export function App() {
 
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {plans.map((plan, index) => (
-                <PlanCard key={index} {...plan} />
+                <PlanCard key={index} plan={plan} />
               ))}
             </section>
 

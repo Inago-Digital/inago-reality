@@ -1,5 +1,5 @@
 import { cn } from "../utils/cn"
-import { InputProps } from "./Input.types"
+import { InputProps } from "../types/Input.types"
 import { InputHTMLAttributes, useId } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -34,7 +34,7 @@ export function Input(props: InputProps) {
     <div
       className={cn(
         "relative inline-block text-left w-full",
-        containerClassName
+        containerClassName,
       )}
     >
       {label && (

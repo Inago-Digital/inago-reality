@@ -1,31 +1,33 @@
 import { Button } from "./Button.11ty"
-import { Plan } from "./Plan.type"
+import { Plan } from "../types/Plan.type"
 
-export function PlanCard(plan: Plan) {
+export function PlanCard({ plan, cta = true }: { plan: Plan; cta?: boolean }) {
   return (
-    <div className="px-6 md:px-8 pt-16 pb-14 rounded-2xl flex flex-col justify-between bg-foreground">
-      <div className="flex flex-col gap-4">
-        <h2 className="text-3xl font-bold mb-6">{plan.title}</h2>
-        <p className="lg:mr-24 mb-6">{plan.description}</p>
-        <ul className="space-y-4 mb-12">
-          {plan.points.map((point, index) => (
-            <li
-              key={index}
-              className="flex items-center gap-4 text-lg lg:text-xl font-semibold"
-            >
-              <img
-                src={
-                  point.included
-                    ? "/assets/icons/checkmark.svg"
-                    : "/assets/icons/cross.svg"
-                }
-                alt="Checkmark icon"
-                className="inline-block w-5 h-5"
-              />
-              <p>{point.value}</p>
-            </li>
-          ))}
-        </ul>
+    <div className="px-6 md:px-8 pt-16 pb-14 rounded-2xl flex flex-col bg-foreground h-full">
+      <div className="flex flex-col gap-4 h-full">
+        <h2 className="text-3xl font-bold mb-4">{plan.title}</h2>
+        <p className="mb-6">{plan.description}</p>
+        {plan.points && (
+          <ul className="space-y-4 mb-16 mt-auto">
+            {plan.points.map((point, index) => (
+              <li
+                key={index}
+                className="flex items-center gap-4 text-lg lg:text-xl font-semibold"
+              >
+                <img
+                  src={
+                    point.included
+                      ? "/assets/icons/checkmark.svg"
+                      : "/assets/icons/cross.svg"
+                  }
+                  alt="Checkmark icon"
+                  className="inline-block w-5 h-5"
+                />
+                <p>{point.value}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <div className="flex flex-col xl:flex-row gap-8 xl:gap-0 xl:items-center justify-between">
         {plan.isSale && plan.salePrice ? (
@@ -41,11 +43,13 @@ export function PlanCard(plan: Plan) {
             </span>
           </div>
         ) : (
-          <span className="text-2xl font-bold text-primary">{plan.price}</span>
+          <span className="text-4xl font-bold text-primary">{plan.price}</span>
         )}
-        <Button href="/kontakt" variant="accent" size="medium">
-          Mám zájem
-        </Button>
+        {cta && (
+          <Button href="/kontakt" variant="accent" size="medium">
+            Mám zájem
+          </Button>
+        )}
       </div>
     </div>
   )
