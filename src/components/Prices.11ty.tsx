@@ -17,7 +17,7 @@ export const additionalPlans: Plan[] = PlanSchema.array().parse([
     ),
     description:
       "Vytvoříme prodejní vizuály pro vaše kampaně k balíčku STANDARD.",
-    price: "1.290 Kč",
+    price: "1.490 Kč",
   },
   {
     title: (
@@ -27,7 +27,7 @@ export const additionalPlans: Plan[] = PlanSchema.array().parse([
     ),
     description:
       "Vytvoříme prodejní vizuály pro vaše kampaně k balíčku PLATINUM.",
-    price: "2.490 Kč",
+    price: "2.990 Kč",
   },
 ])
 
