@@ -21,7 +21,14 @@ export const plans: Plan[] = PlanSchema.array().parse([
         value: (
           <>
             Správa a optimalizace Meta Ads kampaní{" "}
-            <span className="text-primary">(4 kampaně)</span>
+            <span className="text-primary">(4x)</span>
+          </>
+        ),
+      },
+      {
+        value: (
+          <>
+            Sponzoring příspěvků <span className="text-primary">(4x)</span>
           </>
         ),
       },
@@ -58,7 +65,14 @@ export const plans: Plan[] = PlanSchema.array().parse([
         value: (
           <>
             Správa a optimalizace Meta Ads kampaní{" "}
-            <span className="text-primary">(8 kampaní)</span>
+            <span className="text-primary">(8x)</span>
+          </>
+        ),
+      },
+      {
+        value: (
+          <>
+            Sponzoring příspěvků <span className="text-primary">(8x)</span>
           </>
         ),
       },
