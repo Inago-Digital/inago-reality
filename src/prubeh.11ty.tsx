@@ -1,10 +1,10 @@
 import { GTMScript } from "./components/GTMScript.11ty"
-import { Prices } from "./components/Prices.11ty"
+import { Process } from "./components/Process.11ty"
 
 export const data = {
-  title: "Inago Reality - Ceny",
+  title: "Průběh - Inago Reality",
   description:
-    "Objevte naše cenové plány pro efektivní propagaci vašich nemovitostí. Nabízíme flexibilní balíčky šité na míru vašim potřebám, od základních služeb až po komplexní marketingové kampaně. Vyberte si ten pravý plán a začněte prodávat rychleji a efektivněji s Inago Reality.",
+    "Zjistěte, jak probíhá spolupráce s Inago Reality při prodeji vašich nemovitostí. Od první konzultace až po úspěšný prodej, jsme tu, abychom vám poskytli profesionální služby a podporu.",
 }
 
 export default function Page({
@@ -40,8 +40,8 @@ export default function Page({
         <GTMScript />
       </head>
       <body>
-        <div id="root" data-component="Prices">
-          <Prices />
+        <div id="root" data-component="Process">
+          <Process />
         </div>
 
         <script src="/assets/client.min.js"></script>

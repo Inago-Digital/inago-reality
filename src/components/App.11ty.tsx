@@ -16,6 +16,11 @@ export function App() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
+    if (!isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
   }
 
   return (
@@ -35,6 +40,7 @@ export function App() {
               />
             </a>
 
+            {/* Desktop nav */}
             <ul className="hidden md:flex items-center space-x-8 text-white font-bold text-xl">
               <li>
                 <a href="/" className="hover:light transition-colors">
@@ -47,15 +53,77 @@ export function App() {
                 </a>
               </li>
               <li>
+                <a href="/prubeh" className="hover:light transition-colors">
+                  Průběh
+                </a>
+              </li>
+              <li>
                 <Button href="/kontakt" variant="secondary" size="small">
                   Kontakt
                 </Button>
               </li>
             </ul>
 
+            <div
+              className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 ${isOpen ? "block" : "hidden"}`}
+              aria-hidden={!isOpen}
+              onClick={() => setIsOpen(false)}
+            />
+            <nav
+              className={`fixed top-0 right-0 left-0 z-50 bg-primary text-foreground shadow-lg transition-transform duration-300 md:hidden ${isOpen ? "translate-y-0" : "-translate-y-full"} p-8 pt-24`}
+              style={{ minHeight: "100vh" }}
+              aria-label="Mobile menu"
+              role="dialog"
+              aria-modal="true"
+              tabIndex={isOpen ? 0 : -1}
+            >
+              <ul className="flex flex-col items-center space-y-8 text-white font-bold text-2xl">
+                <li>
+                  <a
+                    href="/"
+                    className="hover:light transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/ceny"
+                    className="hover:light transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Ceny
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/prubeh"
+                    className="hover:light transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Průběh
+                  </a>
+                </li>
+                <li>
+                  <Button
+                    href="/kontakt"
+                    variant="secondary"
+                    size="large"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Kontakt
+                  </Button>
+                </li>
+              </ul>
+            </nav>
+
             <button
-              className="md:hidden w-10 h-10 flex flex-col justify-center items-end gap-1 cursor-pointer ml-5 md:ml-0"
+              className="md:hidden w-10 h-10 flex flex-col justify-center items-end gap-1 cursor-pointer ml-5 md:ml-0 z-50"
               onClick={toggleMenu}
+              aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               <motion.span
                 className="bg-dark w-full h-1"

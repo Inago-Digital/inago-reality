@@ -19,10 +19,6 @@ export function Contact() {
     formState: { errors },
   } = useForm<ContactUsFormProps>()
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
-
   const onSubmit = async (data: ContactUsFormProps) => {
     const response = await fetch("https://email.hangerthem.com/send", {
       method: "POST",
@@ -47,6 +43,14 @@ export function Contact() {
       alert(
         "Nastala chyba při odesílání formuláře. Zkuste to prosím znovu později.",
       )
+    }
+  }
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+    if (!isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
     }
   }
 
@@ -79,15 +83,65 @@ export function Contact() {
                 </a>
               </li>
               <li>
+                <a href="/prubeh" className="hover:light transition-colors">
+                  Průběh
+                </a>
+              </li>
+              <li>
                 <Button href="/kontakt" variant="primary" size="small">
                   Kontakt
                 </Button>
               </li>
             </ul>
 
+            <div
+              className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 ${isOpen ? "block" : "hidden"}`}
+              aria-hidden={!isOpen}
+              onClick={() => setIsOpen(false)}
+            />
+            <nav
+              className={`fixed top-0 right-0 left-0 z-50 bg-light text-dark shadow-lg transition-transform duration-300 md:hidden ${isOpen ? "translate-y-0" : "-translate-y-full"} p-8 pt-24`}
+              style={{ minHeight: "100vh" }}
+              aria-label="Mobile menu"
+              role="dialog"
+              aria-modal="true"
+              tabIndex={isOpen ? 0 : -1}
+            >
+              <ul className="flex flex-col items-center space-y-8 text-dark font-bold text-2xl">
+                <li>
+                  <a href="/" onClick={() => setIsOpen(false)}>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="/ceny" onClick={() => setIsOpen(false)}>
+                    Ceny
+                  </a>
+                </li>
+                <li>
+                  <a href="/prubeh" onClick={() => setIsOpen(false)}>
+                    Průběh
+                  </a>
+                </li>
+                <li>
+                  <Button
+                    href="/kontakt"
+                    variant="primary"
+                    size="large"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Kontakt
+                  </Button>
+                </li>
+              </ul>
+            </nav>
+
             <button
-              className="md:hidden w-10 h-10 flex flex-col justify-center items-end gap-1 cursor-pointer ml-5 md:ml-0"
+              className="md:hidden w-10 h-10 flex flex-col justify-center items-end gap-1 cursor-pointer ml-5 md:ml-0 z-50"
               onClick={toggleMenu}
+              aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               <motion.span
                 className="bg-dark w-full h-1"
@@ -115,161 +169,107 @@ export function Contact() {
               />
             </button>
           </nav>
+        </div>
 
-          <div className="flex flex-col lg:flex-row lg:space-x-12 flex-grow">
-            <div className="lg:w-1/2 m-0 lg:ml-6 mt-16">
-              <h1 className="font-bold text-5xl mb-8">Prodávejte rychleji</h1>
-              <p className="text-xl">
-                Ozvěte se nám ještě dnes a&nbsp;
-                <strong>
-                  prodávejte své nemovitosti rychleji díky cílené reklamě.
-                </strong>
-              </p>
+        <div className="flex flex-col lg:flex-row lg:space-x-12 flex-grow">
+          <div className="lg:w-1/2 m-0 lg:ml-6 mt-16">
+            <h1 className="font-bold text-5xl mb-8">Prodávejte rychleji</h1>
+            <p className="text-xl">
+              Ozvěte se nám ještě dnes a&nbsp;
+              <strong>
+                prodávejte své nemovitosti rychleji díky cílené reklamě.
+              </strong>
+            </p>
 
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="mt-10 space-y-6 bg-foreground px-6 py-8 rounded-3xl mt-10 md:mt-32"
-              >
-                <h2 className="text-xl font-bold mb-6">
-                  Nechte nám kontakt a ozveme vám
-                </h2>
-                <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row gap-4 mb-6">
-                  <Input
-                    id="name"
-                    type="text"
-                    {...register("name", {
-                      required: "Toto pole je povinné.",
-                    })}
-                    error={errors.name}
-                    placeholder="Jméno a příjmení"
-                  />
-                  <Input
-                    id="phone"
-                    type="tel"
-                    {...register("phone", {
-                      required: "Toto pole je povinné.",
-                      pattern: {
-                        value: /^\+?[0-9]{9,15}$/,
-                        message: "Neplatné telefonní číslo.",
-                      },
-                    })}
-                    error={errors.phone}
-                    placeholder="Telefonní číslo"
-                  />
-                </div>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="mt-10 space-y-6 bg-foreground px-6 py-8 rounded-3xl mt-10 md:mt-32"
+            >
+              <h2 className="text-xl font-bold mb-6">
+                Nechte nám kontakt a ozveme vám
+              </h2>
+              <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row gap-4 mb-6">
+                <Input
+                  id="name"
+                  type="text"
+                  {...register("name", {
+                    required: "Toto pole je povinné.",
+                  })}
+                  error={errors.name}
+                  placeholder="Jméno a příjmení"
+                />
+                <Input
+                  id="phone"
+                  type="tel"
+                  {...register("phone", {
+                    required: "Toto pole je povinné.",
+                    pattern: {
+                      value: /^\+?[0-9]{9,15}$/,
+                      message: "Neplatné telefonní číslo.",
+                    },
+                  })}
+                  error={errors.phone}
+                  placeholder="Telefonní číslo"
+                />
+              </div>
 
-                <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between">
-                  <div className="flex flex-col">
-                    <div className="flex items-center space-x-4">
-                      <input
-                        type="checkbox"
-                        id="acknowledge"
-                        {...register("acknowledge", {
-                          required: "Musíte souhlasit.",
-                        })}
-                        className="w-4 h-4 border-primary focus:ring-primary accent-primary"
-                      />
-                      <label
-                        htmlFor="acknowledge"
-                        className="text-sm cursor-pointer"
-                      >
-                        Souhlasím se{" "}
-                        <a href="/privacy" className="underline">
-                          zpracovním osobních údajů
-                        </a>
-                      </label>
-                    </div>
-                    <AnimatePresence>
-                      {errors.acknowledge && (
-                        <motion.p
-                          key="acknowledge-error"
-                          className="text-sm text-primary mt-1"
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                        >
-                          {errors.acknowledge.message}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  <Button type="submit" variant="secondary" size="small">
-                    Odeslat
-                  </Button>
-                </div>
-              </form>
-
-              <div className="mt-10 space-y-6 bg-foreground px-6 py-8 rounded-3xl">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <img
-                      src="/assets/images/testimonial-wunsch.png"
-                      alt="Photo of Vladimír Wünsch"
-                      className="w-16 h-16 rounded-full inline-block mr-6"
+              <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between">
+                <div className="flex flex-col">
+                  <div className="flex items-center space-x-4">
+                    <input
+                      type="checkbox"
+                      id="acknowledge"
+                      {...register("acknowledge", {
+                        required: "Musíte souhlasit.",
+                      })}
+                      className="w-4 h-4 border-primary focus:ring-primary accent-primary"
                     />
-                    <div>
-                      <p className="text-xl font-semibold">Vladimír Wünsch</p>
-                      <p>CEO a majitel Inago Digital</p>
-                    </div>
-                  </div>
-
-                  <div className="space-x-2 hidden md:flex">
-                    <a
-                      href="https://wa.me/420602202876"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center w-12 h-12 bg-[#25D366] rounded-full"
+                    <label
+                      htmlFor="acknowledge"
+                      className="text-sm cursor-pointer"
                     >
-                      <img
-                        src="/assets/graphics/whatsapp-logo.svg"
-                        alt="WhatsApp logo"
-                        className="w-6 h-6"
-                      />
-                    </a>
+                      Souhlasím se{" "}
+                      <a href="/privacy" className="underline">
+                        zpracovním osobních údajů
+                      </a>
+                    </label>
+                  </div>
+                  <AnimatePresence>
+                    {errors.acknowledge && (
+                      <motion.p
+                        key="acknowledge-error"
+                        className="text-sm text-primary mt-1"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                      >
+                        {errors.acknowledge.message}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-                    {/* <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-12 h-12 bg-[#27A7E7] rounded-full"
-                  >
-                    <img
-                      src="/assets/graphics/telegram-logo.svg"
-                      alt="Telegram logo"
-                      className="w-6 h-6 mr-1"
-                    />
-                  </a> */}
+                <Button type="submit" variant="secondary" size="small">
+                  Odeslat
+                </Button>
+              </div>
+            </form>
+
+            <div className="mt-10 space-y-6 bg-foreground px-6 py-8 rounded-3xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <img
+                    src="/assets/images/testimonial-wunsch.png"
+                    alt="Photo of Vladimír Wünsch"
+                    className="w-16 h-16 rounded-full inline-block mr-6"
+                  />
+                  <div>
+                    <p className="text-xl font-semibold">Vladimír Wünsch</p>
+                    <p>CEO a majitel Inago Digital</p>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2 justify-between">
-                  <a
-                    href="tel:+420602202876"
-                    className="text-lg md:text-xl xl:text-2xl font-bold block hover:underline"
-                  >
-                    <img
-                      src="/assets/icons/phone.svg"
-                      alt="Phone icon"
-                      className="w-5 h-5 inline-block mr-4"
-                    />
-                    +420 602 202 876
-                  </a>
-
-                  <a
-                    href="mailto:vladimir.wunsch@inago.cz"
-                    className="text-lg md:text-xl xl:text-2xl font-bold block hover:underline"
-                  >
-                    <img
-                      src="/assets/icons/email.svg"
-                      alt="Phone icon"
-                      className="w-5 h-5 inline-block mr-4"
-                    />
-                    vladimir.wunsch@inago.cz
-                  </a>
-                </div>
-
-                <div className="flex md:hidden space-x-2">
+                <div className="space-x-2 hidden md:flex">
                   <a
                     href="https://wa.me/420602202876"
                     target="_blank"
@@ -283,7 +283,7 @@ export function Contact() {
                     />
                   </a>
 
-                  <a
+                  {/* <a
                     href="#"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -294,87 +294,141 @@ export function Contact() {
                       alt="Telegram logo"
                       className="w-6 h-6 mr-1"
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
-            </div>
-            <div className="w-full lg:w-1/2 mt-10">
-              <div
-                className="calendly-inline-widget"
-                data-resize="true"
-                data-url="https://calendly.com/adam-bitez/30min"
-              ></div>
-              <script
-                type="text/javascript"
-                src="https://assets.calendly.com/assets/external/widget.js"
-                async
-              ></script>
+
+              <div className="flex flex-col gap-2 justify-between">
+                <a
+                  href="tel:+420602202876"
+                  className="text-lg md:text-xl xl:text-2xl font-bold block hover:underline"
+                >
+                  <img
+                    src="/assets/icons/phone.svg"
+                    alt="Phone icon"
+                    className="w-5 h-5 inline-block mr-4"
+                  />
+                  +420 602 202 876
+                </a>
+
+                <a
+                  href="mailto:vladimir.wunsch@inago.cz"
+                  className="text-lg md:text-xl xl:text-2xl font-bold block hover:underline"
+                >
+                  <img
+                    src="/assets/icons/email.svg"
+                    alt="Phone icon"
+                    className="w-5 h-5 inline-block mr-4"
+                  />
+                  vladimir.wunsch@inago.cz
+                </a>
+              </div>
+
+              <div className="flex md:hidden space-x-2">
+                <a
+                  href="https://wa.me/420602202876"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-[#25D366] rounded-full"
+                >
+                  <img
+                    src="/assets/graphics/whatsapp-logo.svg"
+                    alt="WhatsApp logo"
+                    className="w-6 h-6"
+                  />
+                </a>
+
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-[#27A7E7] rounded-full"
+                >
+                  <img
+                    src="/assets/graphics/telegram-logo.svg"
+                    alt="Telegram logo"
+                    className="w-6 h-6 mr-1"
+                  />
+                </a>
+              </div>
             </div>
           </div>
+          <div className="w-full lg:w-1/2 mt-10">
+            <div
+              className="calendly-inline-widget"
+              data-resize="true"
+              data-url="https://calendly.com/adam-bitez/30min"
+            ></div>
+            <script
+              type="text/javascript"
+              src="https://assets.calendly.com/assets/external/widget.js"
+              async
+            ></script>
+          </div>
+        </div>
 
-          <footer className="flex flex-col lg:flex-row mt-20 mt-10 gap-10 lg:gap-0">
-            <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-10">
-              <p>&copy; 2025 Inago Digital</p>
+        <footer className="flex flex-col lg:flex-row mt-20 mt-10 gap-10 lg:gap-0">
+          <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-10">
+            <p>&copy; 2025 Inago Digital</p>
+            <a
+              href="https://inago.cz/ochrana-osobnich-udaju/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline w-fit"
+            >
+              Ochrana osobních údajů
+            </a>
+          </div>
+          <div className="flex flex-col md:flex-row lg:ml-auto gap-6 md:space-x-8 md:items-center">
+            <a
+              className="order-2 md:order-1 w-fit"
+              href="https://inago.cz"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/assets/graphics/powered-by-inago-dark.svg"
+                className="w-44 h-auto"
+                alt="Powered by Inago Digital"
+              />
+            </a>
+            <div className="flex order-1 md:order-2 space-x-8 items-center">
               <a
-                href="https://inago.cz/ochrana-osobnich-udaju/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline w-fit"
-              >
-                Ochrana osobních údajů
-              </a>
-            </div>
-            <div className="flex flex-col md:flex-row lg:ml-auto gap-6 md:space-x-8 md:items-center">
-              <a
-                className="order-2 md:order-1 w-fit"
-                href="https://inago.cz"
+                href="https://www.instagram.com/inagocz/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/assets/graphics/powered-by-inago-dark.svg"
-                  className="w-44 h-auto"
-                  alt="Powered by Inago Digital"
+                  src="/assets/icons/instagram-dark.svg"
+                  className="w-7 h-7"
+                  alt="Instagram Inago Digital"
                 />
               </a>
-              <div className="flex order-1 md:order-2 space-x-8 items-center">
-                <a
-                  href="https://www.instagram.com/inagocz/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="/assets/icons/instagram-dark.svg"
-                    className="w-7 h-7"
-                    alt="Instagram Inago Digital"
-                  />
-                </a>
-                <a
-                  href="https://www.facebook.com/inagocz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="/assets/icons/facebook-dark.svg"
-                    className="w-7 h-7"
-                    alt="Facebook Inago Digital"
-                  />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/15787031"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="/assets/icons/linkedin-dark.svg"
-                    className="w-7 h-7"
-                    alt="Instagram Inago Digital"
-                  />
-                </a>
-              </div>
+              <a
+                href="https://www.facebook.com/inagocz"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/icons/facebook-dark.svg"
+                  className="w-7 h-7"
+                  alt="Facebook Inago Digital"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/15787031"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/assets/icons/linkedin-dark.svg"
+                  className="w-7 h-7"
+                  alt="Instagram Inago Digital"
+                />
+              </a>
             </div>
-          </footer>
-        </div>
+          </div>
+        </footer>
       </header>
 
       <script
