@@ -52,7 +52,7 @@ export const plans: Plan[] = PlanSchema.array().parse([
     ),
     description: (
       <>
-        Pro ty, které <span className="font-bold">chtějí dominovat trhu.</span>{" "}
+        Pro ty, kteří <span className="font-bold">chtějí dominovat trhu.</span>{" "}
         Balíček kombinuje{" "}
         <span className="font-bold">
           výkonnostní kampaně s&nbsp;remarketingem a&nbsp;pokročilou analýzou

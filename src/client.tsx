@@ -3,8 +3,9 @@ import { App } from "./components/App.11ty"
 import { Contact } from "./components/Contact.11ty"
 import { Prices } from "./components/Prices.11ty"
 import { Process } from "./components/Process.11ty"
+import { GDPR } from "./components/GDPR"
 
-const registry = { App, Contact, Prices, Process }
+const registry = { App, Contact, Prices, Process, GDPR }
 
 const root = document.getElementById("root")
 if (root) {

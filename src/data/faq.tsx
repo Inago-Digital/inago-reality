@@ -52,7 +52,7 @@ export const faqs: FAQ[] = [
   },
   {
     question:
-      "Musím vám dodávat hotové texty a grafiky, nebo to uděláte za mě?",
+      "Musím vám dodávat hotové texty a grafiku, nebo to uděláte za mě?",
     answer: (
       <>
         V obou balíčcích za vás tvoříme prodejní texty inzerce. Ke každému

@@ -4,7 +4,7 @@ export const steps: Step[] = StepSchema.array().parse([
   {
     title: "Získáme od Vás podklady",
     content:
-      "Jednoduše nám pošlete jakou nemovitost chcete zviditelnit a my se o vše postaráme.",
+      "Jednoduše nám pošlete, jakou nemovitost chcete zviditelnit, a my se o vše postaráme.",
   },
   {
     title: "Vytvoříme kampaň",
@@ -14,6 +14,6 @@ export const steps: Step[] = StepSchema.array().parse([
   {
     title: <>Optimalizujeme a&nbsp;reportujeme</>,
     content:
-      "Sledujeme výkon a průběžně upravujeme kampaně pro maximální efekt.",
+      " Sledujeme výkon a průběžně upravujeme kampaně pro maximální efekt. Pravidelné měsíční reporty najdete vždy přehledně ve svém účtu.",
   },
 ])

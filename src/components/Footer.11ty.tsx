@@ -21,7 +21,7 @@ export function Footer() {
           </p>
           <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
             <Button href="/kontakt" variant="secondary" size="large">
-              Chci call
+              Chci konzultaci
             </Button>
             <a
               href="https://calendly.com/adam-bitez/30min"

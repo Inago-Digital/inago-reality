@@ -186,7 +186,7 @@ export function Contact() {
               className="mt-10 space-y-6 bg-foreground px-6 py-8 rounded-3xl mt-10 md:mt-32"
             >
               <h2 className="text-xl font-bold mb-6">
-                Nechte nám kontakt a ozveme vám
+                Nechte nám kontakt a ozveme se vám
               </h2>
               <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row gap-4 mb-6">
                 <Input
@@ -229,8 +229,8 @@ export function Contact() {
                       className="text-sm cursor-pointer"
                     >
                       Souhlasím se{" "}
-                      <a href="/privacy" className="underline">
-                        zpracovním osobních údajů
+                      <a href="/gdpr" className="underline">
+                        zpracováním osobních údajů
                       </a>
                     </label>
                   </div>
