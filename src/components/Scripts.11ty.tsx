@@ -10,10 +10,14 @@ export function Scripts() {
         })(window,document,'script','dataLayer','GTM-PQLJ7L8Z');`,
         }}
       />
-      <script>
-        var CAPI_PROXY = 'https://capi-proxy.inago.cz/event'; var CAPI_KEY =
-        'capi_7645a3a94e4d26e1f7c760aba31114fac1fb2378';
-      </script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+          var CAPI_PROXY = 'https://capi-proxy.inago.cz/event';
+          var CAPI_KEY = 'capi_7645a3a94e4d26e1f7c760aba31114fac1fb2378';
+        `,
+        }}
+      />
       <script src="https://capi-proxy.inago.cz/fb-capi-client.js"></script>
     </>
   )
