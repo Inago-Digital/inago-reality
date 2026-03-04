@@ -1,4 +1,4 @@
-import { GTMScript } from "./components/GTMScript.11ty"
+import { Scripts } from "./components/Scripts.11ty"
 import { Prices } from "./components/Prices.11ty"
 
 export const data = {
@@ -37,7 +37,7 @@ export default function Page({
         <meta name="apple-mobile-web-app-title" content="Inago Reality" />
         <link rel="manifest" href="/assets/site.webmanifest" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <GTMScript />
+        <Scripts />
       </head>
       <body>
         <div id="root" data-component="Prices">

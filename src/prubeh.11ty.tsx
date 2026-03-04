@@ -1,5 +1,5 @@
-import { GTMScript } from "./components/GTMScript.11ty"
 import { Process } from "./components/Process.11ty"
+import { Scripts } from "./components/Scripts.11ty"
 
 export const data = {
   title: "Průběh - Inago Reality",
@@ -37,7 +37,7 @@ export default function Page({
         <meta name="apple-mobile-web-app-title" content="Inago Reality" />
         <link rel="manifest" href="/assets/site.webmanifest" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <GTMScript />
+        <Scripts />
       </head>
       <body>
         <div id="root" data-component="Process">
