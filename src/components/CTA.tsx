@@ -1,11 +1,11 @@
 export function CTA() {
   const getSeatsAvailable = () => {
     const now = new Date()
-    const startDate = new Date("2026-01-18T00:00:00Z")
+    const startDate = new Date("2026-03-16T00:00:00Z")
     const diffTime = Math.abs(now.getTime() - startDate.getTime())
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-    const seatsReduced = Math.floor(diffDays / 3)
-    const initialSeats = 18
+    const seatsReduced = Math.floor(diffDays / 4)
+    const initialSeats = 20
     const seatsLeft = initialSeats - seatsReduced
     return seatsLeft > 0 ? seatsLeft : 0
   }
