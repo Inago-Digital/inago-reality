@@ -58,6 +58,11 @@ export function App() {
                 </a>
               </li>
               <li>
+                <a href="/aplikace" className="hover:light transition-colors">
+                  Aplikace
+                </a>
+              </li>
+              <li>
                 <Button href="/kontakt" variant="secondary" size="small">
                   Kontakt
                 </Button>
@@ -103,6 +108,15 @@ export function App() {
                     onClick={() => setIsOpen(false)}
                   >
                     Průběh
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/aplikace"
+                    className="hover:light transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Aplikace
                   </a>
                 </li>
                 <li>
@@ -311,29 +325,24 @@ export function App() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="max-w-[1800px] flex-col md:flex-row mx-auto flex px-2 lg:pt-20 lg:pb-16 lg:px-20 text-dark items-center"
+          className="max-w-[1800px] flex-col md:flex-row mx-auto flex gap-24 px-2 lg:pt-20 lg:pb-16 lg:px-20 text-dark items-center"
         >
-          <div className="md:w-1/2">
-            <q className="text-2xl md:text-3xl font-bold leading-snug md:leading-10 mb-8 block">
-              Naše balíčky výkonnostního marketingu jsme navrhli tak, aby
-              odpovídaly dynamickému prostředí realit. Nabízejí tak maximální
-              využití výkonu za rozumnou cenu.
-            </q>
-            <div className="flex items-center">
-              <img
-                src="/assets/images/testimonial-wunsch.png"
-                alt="Photo of Vladimír Wünsch"
-                className="w-20 h-20 rounded-full inline-block mr-6"
-              />
-              <div>
-                <p className="text-2xl font-semibold">Vladimír Wünsch</p>
-                <p>CEO a majitel Inago Digital</p>
-              </div>
-            </div>
+          <div className="md:flex-1 w-full md:w-auto">
+            <h2 className="text-3xl md:text-5xl font-bold mb-8 block">
+              Efektivní komunikace přes aplikaci
+            </h2>
+            <p className="text-lg md:text-xl leading-relaxed mb-8">
+              Zadáváte kampaně, komunikujete se specialistou, sledujete jejich
+              výkon a máte jasný přehled o výsledcích. Díky přehlednému
+              prostředí máte vše pod kontrolou bez zbytečných e-mailů a zmatků.
+            </p>
+            <Button href="/aplikace" variant="primary" size="large">
+              O aplikaci
+            </Button>
           </div>
-          <div className="md:w-1/2">
+          <div className="md:flex-1 w-full md:w-auto">
             <img
-              src="/assets/images/testemonial.jpg"
+              src="/assets/images/app-tablet.png"
               className="w-[750px] h-auto m-auto"
               alt="Illustration of a person using a laptop"
             />

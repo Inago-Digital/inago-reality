@@ -1,10 +1,20 @@
 import { Result } from "../types/Result.types"
 
-export function ResultCard({ result }: { result: Result }) {
+export function ResultCard({
+  result,
+  darkMode = false,
+}: {
+  result: Result
+  darkMode?: boolean
+}) {
   return (
-    <div className="p-6 md:p-8 rounded-2xl flex flex-col justify-between space-y-6 md:space-y-10 bg-foreground">
+    <div
+      className={`p-6 md:p-8 rounded-2xl flex flex-col justify-between space-y-6 md:space-y-10 ${darkMode ? "bg-secondary-light" : "bg-foreground"}`}
+    >
       <div className="flex items-center gap-4 md:gap-8 w-full justify-between">
-        <h2 className="text-2xl md:text-3xl text-primary font-bold">
+        <h2
+          className={`text-2xl md:text-3xl ${darkMode ? "text-light" : "text-primary"} font-bold`}
+        >
           {result.title}
         </h2>
         <div
@@ -13,7 +23,7 @@ export function ResultCard({ result }: { result: Result }) {
           <img src={result.icon} alt={`${result.title} icon`} className="h-8" />
         </div>
       </div>
-      <p>{result.content}</p>
+      <p className={darkMode ? "" : "text-dark"}>{result.content}</p>
     </div>
   )
 }

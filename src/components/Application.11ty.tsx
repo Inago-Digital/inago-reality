@@ -1,48 +1,32 @@
-import { motion } from "framer-motion"
-import { Step } from "../types/Step.type"
 import { useState } from "react"
 import { Button } from "./Button.11ty"
-import { Footer } from "./Footer.11ty"
+import { motion } from "framer-motion"
+import { applicationInfo } from "../data/applicationInfo"
+import { ResultCard } from "./ResultCard.11ty"
+import { applicationBenefits } from "../data/applicationBenefits"
 import { StepCard } from "./StepCard.11ty"
+import { Step } from "../types/Step.type"
+import { Footer } from "./Footer.11ty"
 
-export const processSteps: Step[][] = [
-  [
-    {
-      title: "Vyberete si balíček",
-      content:
-        "Vyberete si balíček, který vám nejvíce vyhovuje, a spojíte se s naším obchodním manažerem.",
-    },
-    {
-      title: "Podepíšeme spolupráci",
-      content:
-        "Souhlas podepíšete jednoduše online. Spolupráce je bez závazků a lze ji kdykoliv vypovědět.",
-    },
-    {
-      title: "Aplikace a onboarding",
-      content:
-        "Přihlásíme vás do aplikace, vyplníte vstupní onboarding a můžeme začít pracovat.",
-    },
-  ],
-  [
-    {
-      title: "Propojíme účty Meta",
-      content:
-        "Specialista vás provede nasdílením přístupů k vašemu reklamnímu účtu (Business Manageru).",
-    },
-    {
-      title: "Spouštíme kampaně",
-      content:
-        "Aktivujeme reklamy na platformách Meta (Facebook/Instagram) zacílené na Vaši cílovku.",
-    },
-    {
-      title: "Optimalizace a reporting",
-      content:
-        "Sledujeme výkon kampaní, optimalizujeme cenu za poptávku a reportujeme vám výsledky.",
-    },
-  ],
+export const applicationProcessSteps: Step[] = [
+  {
+    title: "Přihlásíte se do aplikace",
+    content:
+      "Vyberete si balíček, který vám nejvíce vyhovuje, a spojíte se s naším obchodním manažerem.",
+  },
+  {
+    title: "Vyplníte onboarding",
+    content:
+      "Souhlas podepíšete jednoduše online. Spolupráce je bez závazků a lze ji kdykoliv vypovědět.",
+  },
+  {
+    title: "Zadáváte kampaně",
+    content:
+      "Získáme představu o tom, kdo jste a jak prodáváte. Předáte nám také svůj branding.",
+  },
 ]
 
-export function Process() {
+export function Application() {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -181,17 +165,50 @@ export function Process() {
             </button>
           </nav>
         </div>
-
-        <div className="max-w-[1800px] flex flex-col mx-auto mt-16 md:mt-24">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 text-center">
-            Jak probíhá spolupráce?
-          </h2>
-          <p className="text-xl mb-14 leading-relaxed text-center">
-            Několik jednoduchých kroků vás dělí od toho, abyste měli perfektně
-            nastavené výkonnostní kampaně.
-          </p>
-        </div>
       </header>
+
+      <motion.main
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="max-w-[1800px] flex-col md:flex-row mx-auto flex gap-24 px-2 lg:px-20 text-dark items-center"
+      >
+        <div className="md:flex-1 w-full md:w-auto">
+          <img
+            src="/assets/images/app-mobile.png"
+            className="w-[750px] h-auto m-auto"
+            alt="Illustration of a person using a laptop"
+          />
+        </div>
+        <div className="md:flex-1 w-full md:w-auto">
+          <h1 className="text-3xl md:text-6xl font-bold mb-8 block">
+            Kampaně <span className="text-primary">v aplikaci</span> a&nbsp;pod
+            kontrolou
+          </h1>
+          <p className="text-lg md:text-xl leading-relaxed mb-8">
+            Konec nepřehledným e-mailům a zmatkům. Vaše{" "}
+            <span className="font-bold">kampaně máte pod kontrolou</span> v naší
+            aplikaci, která vám šetří čas a vše v ní ovládáte i najdete na
+            jednom místě.
+          </p>
+          <ul>
+            {applicationInfo.map((info, index) => (
+              <li
+                key={index}
+                className="font-semibold text-2xl border-t border-light py-10 last:border-b"
+              >
+                <img
+                  src="/assets/icons/flag.svg"
+                  alt=""
+                  className="inline-block w-6 h-6 mr-4"
+                />
+                {info}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </motion.main>
 
       <motion.section
         initial={{ opacity: 0, y: 50 }}
@@ -201,23 +218,50 @@ export function Process() {
         className="bg-secondary px-6 pt-20 pb-16 lg:px-20 rounded-3xl text-foreground"
       >
         <div className="max-w-[1800px] flex flex-col mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8">Týden 0</h2>
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            Na jednom místě
+          </h2>
           <p className="text-xl mb-14 leading-relaxed">
-            Na začátku se domluvíme na spolupráci. Získáme od vás přehled o tom,
-            kdo jste, jaké máte cíle a jaká je vaše strategie prodeje. Na
-            základě těchto informací se následně pustíme do optimální realizace
-            kampaní.
+            S marketingovým specialistou, který pro vás spravuje kampaně,
+            komunikujete v naší aplikaci.
           </p>
 
           <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
-            {processSteps[0].map((step, index) => (
-              <StepCard key={index} index={index + 1} step={step} />
+            {applicationBenefits.map((benefit, index) => (
+              <ResultCard key={index} result={benefit} darkMode />
             ))}
           </section>
+        </div>
+      </motion.section>
 
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="max-w-[1800px] flex-col md:flex-row mx-auto flex gap-24 px-2 lg:pt-20 lg:pb-16 lg:px-20 text-dark items-center"
+      >
+        <div className="md:flex-1 w-full md:w-auto">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 block">
+            Lepší přehled jste ještě neměli
+          </h2>
+          <p className="text-lg md:text-xl leading-relaxed mb-8">
+            Jaké kampaně fungují nejlépe a přivádějí vám{" "}
+            <span className="font-bold">nejvíce dosahu nebo leadů?</span>{" "}
+            Všechna data najdete v naší aplikaci a můžete se leadů? Všechna data
+            najdete v naší aplikaci a můžete se kvalifikovaně rozhodnout, do
+            čeho investovat příště.
+          </p>
           <Button href="/kontakt" variant="primary" size="large">
-            Prohlédnout ceny
+            Mám zájem
           </Button>
+        </div>
+        <div className="md:flex-1 w-full md:w-auto">
+          <img
+            src="/assets/images/app-tablet.png"
+            className="w-[750px] h-auto m-auto"
+            alt="Illustration of a person using a laptop"
+          />
         </div>
       </motion.section>
 
@@ -229,15 +273,12 @@ export function Process() {
         className="bg-light px-6 pt-20 pb-16 lg:px-20 rounded-3xl text-dark"
       >
         <div className="max-w-[1800px] flex flex-col mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8">Týden 1</h2>
-          <p className="text-xl mb-14 leading-relaxed">
-            V této fázi již připravujeme vše potřebné, abychom mohli začít s
-            propagací vašich příspěvků a generovat poptávky po vašich
-            nemovitostech nebo službách.
-          </p>
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            Jak to funguje
+          </h2>
 
           <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
-            {processSteps[1].map((step, index) => (
+            {applicationProcessSteps.map((step, index) => (
               <StepCard
                 key={index}
                 index={index + 1}
@@ -246,16 +287,14 @@ export function Process() {
               />
             ))}
           </section>
+
+          <Button href="/ceny" variant="primary" size="large">
+            Prohlédnout ceny
+          </Button>
         </div>
       </motion.section>
 
       <Footer />
-
-      <script
-        id="cookieyes"
-        type="text/javascript"
-        src="https://cdn-cookieyes.com/client_data/5d45a5dfcfbd3be48e5ebffa/script.js"
-      />
     </div>
   )
 }

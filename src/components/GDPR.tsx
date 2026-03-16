@@ -48,6 +48,11 @@ export function GDPR() {
                 </a>
               </li>
               <li>
+                <a href="/aplikace" className="hover:light transition-colors">
+                  Aplikace
+                </a>
+              </li>
+              <li>
                 <Button href="/kontakt" variant="primary" size="small">
                   Kontakt
                 </Button>
@@ -81,6 +86,15 @@ export function GDPR() {
                 <li>
                   <a href="/prubeh" onClick={() => setIsOpen(false)}>
                     Průběh
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/aplikace"
+                    className="hover:light transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Aplikace
                   </a>
                 </li>
                 <li>

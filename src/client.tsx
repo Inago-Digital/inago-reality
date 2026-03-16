@@ -4,8 +4,9 @@ import { Contact } from "./components/Contact.11ty"
 import { Prices } from "./components/Prices.11ty"
 import { Process } from "./components/Process.11ty"
 import { GDPR } from "./components/GDPR"
+import { Application } from "./components/Application.11ty"
 
-const registry = { App, Contact, Prices, Process, GDPR }
+const registry = { App, Contact, Prices, Process, GDPR, Application }
 
 const root = document.getElementById("root")
 if (root) {

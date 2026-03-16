@@ -38,7 +38,7 @@ export function Footer() {
         </div>
         <img
           src="/assets/images/footer.png"
-          className="w-[650px] h-auto ml-auto"
+          className="w-[650px] py-10 h-auto ml-auto"
           alt="Mobile open with facebook page"
         />
         <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 space-x-0 md:space-x-10">
