@@ -20,21 +20,17 @@ export function Contact() {
   } = useForm<ContactUsFormProps>()
 
   const onSubmit = async (data: ContactUsFormProps) => {
-    const response = await fetch("https://email.hangerthem.com/send", {
-      method: "POST",
-      body: JSON.stringify({
-        to: "info@inago.cz",
-        subject: "Nová zpráva z Inago Reality",
-        name: data.name,
-        message: `
-          Name: ${data.name}
-          Phone: ${data.phone}
-        `,
-        html: generateHTMLMessage(data),
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    if (!window || !window.sendEmail) {
+      alert(
+        "Odesílání formuláře není momentálně dostupné. Zkuste to prosím znovu později.",
+      )
+      return
+    }
+
+    const response = await window.sendEmail({
+      subject: "Nová zpráva z Inago Reality",
+      text: `Jméno: ${data.name}\nTelefon: ${data.phone}`,
+      html: generateHTMLMessage(data),
     })
 
     if (response.ok) {
