@@ -42,7 +42,7 @@ export const plans: Plan[] = PlanSchema.array().parse([
     ],
     price: "8.990 Kč",
     isSale: true,
-    salePrice: "5.990 Kč",
+    salePrice: "6.990 Kč",
   },
   {
     title: (
